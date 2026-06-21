@@ -1,6 +1,4 @@
-# SUTD404: Denoising Language Models for Room Address Lookup
-
-**Web application**: [sutd404.vercel.app](https://sutd404.vercel.app).
+# SUTD404
 
 ## Setup
 
