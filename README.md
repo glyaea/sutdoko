@@ -1,4 +1,4 @@
-# SUTD404
+# SUTD 404
 
 ## Setup
 
