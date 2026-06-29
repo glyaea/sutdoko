@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+@import url("https://rsms.me/inter/inter.css");
 
 * {
 	box-sizing: border-box;
@@ -12,7 +11,7 @@
 body {
 	background: whitesmoke;
 	color: black;
-	font-family: "Google Sans Flex";
+	font-family: "Inter";
 	height: 100vh;
 	width: 100vw;
 }

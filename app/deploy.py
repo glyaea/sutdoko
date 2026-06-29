@@ -17,7 +17,7 @@ class ApiError(RuntimeError):
 def load_token(root):
 	path = pathlib.Path(root) / ".env"
 	if not path.exists():
-		raise RuntimeError("missing VERCEL_ACCESS_TOKEN in experiments/.env")
+		raise RuntimeError("missing VERCEL_ACCESS_TOKEN in app/.env")
 	for line in path.read_text().splitlines():
 		key, sep, value = line.partition("=")
 		if key != "VERCEL_ACCESS_TOKEN" or not sep:
@@ -25,7 +25,7 @@ def load_token(root):
 		value = value.strip().strip("\"'")
 		if value:
 			return value
-	raise RuntimeError("missing VERCEL_ACCESS_TOKEN in experiments/.env")
+	raise RuntimeError("missing VERCEL_ACCESS_TOKEN in app/.env")
 
 
 def load_deploy(root):
@@ -218,7 +218,7 @@ def main():
 	app = build.app_root()
 	exp = build.experiments_root()
 	cfg = load_deploy(exp)
-	tok = load_token(exp)
+	tok = load_token(app)
 	print(f"app {app}")
 	print(f"experiments {exp}")
 	print(f"api {cfg['api']}")

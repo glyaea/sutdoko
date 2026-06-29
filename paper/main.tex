@@ -46,13 +46,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 
-\title{SUTD404: Denoising Language Models for Room Address Lookup}
-\author{
-	G. Lim,
-	E. Ang,
-	M. Shaswat,
-	M. Ramaswamy
-}
+\title{SUTDoko: Denoising Language Models for Room Address Lookup}
+\author{G. Lim, E. Ang, M. Shaswat, M. Ramaswamy}
 \date{April 2026}
 
 \begin{document}
@@ -83,20 +78,15 @@ visitors unfamiliar with the rooms
 and people with less experience typing in English.
 
 To address this gap,
-we introduce SUTD404,
+we introduce SUTDoko,
 a digital resource for room address lookup.
 Visit
-\href{https://github.com/gregorylimeurhen/sutd404}{github.com/gregorylimeurhen/sutd404}
-for our code repository, and
-\href{https://sutd404.vercel.app}{sutd404.vercel.app}
+\href{https://sutdoko.vercel.app}{sutdoko.vercel.app}
 for our web application.
 
 \newpage
 
 \section{Methodology}
-
-% Read comments for developer (i.e. implementation) prose not in the paper please!
-% For brevity, we call a room name a "room", and a room address an "address"
 
 Let $V$ be a vocabulary,
 and $R\subseteq V^{*}$ be a room set,
@@ -295,24 +285,6 @@ $$
 
 Our lookup is a standard room-address table.
 
-% Edges map rooms to their addresses in the untouched `edges.tsv`
-% Because a room like `foo` can have multiple addresses like `A, B`,
-% we write a script `preprocess.py` to:
-% 1. generate `train.tsv` (for D_train), `val.tsv` (for D_val), `test.tsv` (for D_test)
-% by writing `corrupted	normal` pairs as rows
-% 2. convert `edges.tsv` to `n2a.tsv` with each row like `foo	A, B`
-% so look-up for `foo` yields `A, B`
-% The data is thus fixed after preprocessing
-
-% Search the web for https://github.com/karpathy/nanochat
-% Everything is clean, default, and standard with no other stuffs:
-% - Training loss applied only to clean (target) portion
-% - AdamW on default settings
-% - Batch size derivable as largest batch that fits in memory
-% - Seed 1
-% - Nothing else, no dropout or whatever
-% We log to our `wandb` account
-
 \begin{algorithm}[H]
 	\caption{$\textsc{Infer}(f,x)$}
 	\begin{algorithmic}
@@ -378,7 +350,7 @@ suggesting greater noise robustness.
 		\State $x\gets\textsc{AlphanumericSplit}(x)$
 		% example: "lt2" -> "lt 2"
 		\State $x\gets\textsc{Alias}(x)$
-		% example: "lt 2" -> "lecture theatre 2", read aliases.tsv to see my convention for this
+		% example: "lt 2" -> "lecture theatre 2"
 		\If{$x\in R$}
 			\Return $((x,\mathscr{L}(x)))$
 		\EndIf
@@ -386,10 +358,10 @@ suggesting greater noise robustness.
 			\bm{f}
 			\gets
 			(
-				\textsc{LCP}, % why/assumption: most frequent error type
+				\textsc{LCP},
 				\textsc{SJ},
 				\textsc{DL},
-				\textsc{Ours} % why/assumption: least frequent error type
+				\textsc{Ours}
 			)
 		}$
 		\For{$r\in R$}
@@ -566,10 +538,10 @@ Our system convincingly outperformed SAM, achieving complete recovery.
 
 \section{Conclusion}
 
-We introduced SUTD404,
+We introduced SUTDoko,
 a digital resource for room address lookup,
 to address the limitations of existing systems.
-Overall, we believe the experimental results demonstrate the strong promise of SUTD404
+Overall, we believe the experimental results demonstrate the strong promise of our system
 and provide practical foundations for building more reliable campus assistance systems.
 
 \section{Appendix}

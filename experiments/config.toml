@@ -19,5 +19,5 @@ run = 5327
 
 [deploy]
 api = "https://api.vercel.com"
-project = "sutd404"
+project = "sutdoko"
 team = "gregorylimeurhen"
